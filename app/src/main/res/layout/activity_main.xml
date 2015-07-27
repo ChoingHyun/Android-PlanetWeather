@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="@mipmap/ic_mars"
     tools:context=".MainActivity">
 
 
@@ -10,9 +10,10 @@
         android:id="@+id/tv_temperature"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="26dp"
+        android:layout_marginTop="77dp"
         android:text="26℃"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textSize="32sp" />
+        android:textColor="@color/white"
+        android:textSize="54sp" />
 </RelativeLayout>
