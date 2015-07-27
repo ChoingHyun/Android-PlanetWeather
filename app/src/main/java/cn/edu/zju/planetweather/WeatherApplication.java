@@ -15,16 +15,16 @@ public class WeatherApplication extends Application {
     private String TAG;
     private RequestQueue mRequestQueue;
 
+    public static synchronized WeatherApplication getInstance() {
+        return mWeatherApplication;
+    }
+
     @Override
     public void onCreate() {
         super.onCreate();
         TAG = WeatherApplication.class.getSimpleName();
         mWeatherApplication = this;
         mRequestQueue = Volley.newRequestQueue(getApplicationContext());
-    }
-
-    public WeatherApplication getInstance() {
-        return mWeatherApplication;
     }
 
     public RequestQueue getRequestQueue() {
