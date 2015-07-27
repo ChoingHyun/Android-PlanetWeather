@@ -10,6 +10,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.view.animation.Animation;
+import android.view.animation.LinearInterpolator;
+import android.view.animation.RotateAnimation;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,7 +34,9 @@ import cn.edu.zju.planetweather.net.WeatherJsonRequest;
 public class MainActivity extends Activity {
 
     private TextView mTemperatureTextView;
+    private ImageView mImageView;
     private WeatherApplication helper;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,7 +45,21 @@ public class MainActivity extends Activity {
         transparentStatusBar();
         findViews();
         setTypefaces();
+        setAnimations();
         loadWeatherData();
+    }
+
+    private void setAnimations() {
+        RotateAnimation animation = new RotateAnimation(0f, 360f, Animation.RELATIVE_TO_SELF,
+                0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
+        animation.setDuration(10000);//设置动画持续时间
+        /** 常用方法 */
+        animation.setRepeatCount(3);//设置重复次数
+        animation.setFillAfter(true);
+        LinearInterpolator lin = new LinearInterpolator();//匀速旋转
+        animation.setInterpolator(lin);
+        mImageView.setAnimation(animation);
+        animation.start();
     }
 
     private void transparentStatusBar() {
@@ -64,6 +84,7 @@ public class MainActivity extends Activity {
 
     private void findViews() {
         mTemperatureTextView = (TextView) findViewById(R.id.tv_temperature);
+        mImageView = (ImageView) findViewById(R.id.iv_center);
     }
 
     private void loadWeatherData() {
