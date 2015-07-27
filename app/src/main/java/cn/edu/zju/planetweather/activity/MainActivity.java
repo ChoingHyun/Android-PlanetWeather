@@ -1,6 +1,7 @@
 package cn.edu.zju.planetweather.activity;
 
 import android.app.Activity;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -31,7 +32,13 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
         helper = WeatherApplication.getInstance();
         findViews();
+        setTypefaces();
         loadWeatherData();
+    }
+
+    private void setTypefaces() {
+        Typeface typeface = Typeface.createFromAsset(getAssets(), "fonts/Lato-Hairline.ttf");
+        mTemperatureTextView.setTypeface(typeface);
     }
 
     private void findViews() {
