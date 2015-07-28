@@ -1,6 +1,5 @@
 package cn.edu.zju.planetweather.activity.base;
 
-import android.app.Activity;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
@@ -8,7 +7,9 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 
-public class BaseActivity extends Activity {
+import me.imid.swipebacklayout.lib.app.SwipeBackActivity;
+
+public class SwipeBaseActivity extends SwipeBackActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

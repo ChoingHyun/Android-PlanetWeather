@@ -15,12 +15,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import cn.edu.zju.planetweather.R;
-import cn.edu.zju.planetweather.activity.base.BaseActivity;
+import cn.edu.zju.planetweather.activity.base.SwipeBaseActivity;
 import cn.edu.zju.planetweather.adapter.MessageListAdapter;
 import cn.edu.zju.planetweather.entity.Message;
+import cn.edu.zju.planetweather.utils.L;
 import cn.edu.zju.planetweather.view.DividerItemDecoration;
 
-public class MessageListActivity extends BaseActivity implements SwipeRefreshLayout.OnRefreshListener, View.OnClickListener {
+public class MessageListActivity extends SwipeBaseActivity implements SwipeRefreshLayout.OnRefreshListener, View.OnClickListener {
 
     private RecyclerView mRecyclerView;
     private List<Message> mDateset;
@@ -39,13 +40,14 @@ public class MessageListActivity extends BaseActivity implements SwipeRefreshLay
         mRecyclerView.addItemDecoration(new DividerItemDecoration(
                 this, LinearLayoutManager.VERTICAL));
         mDateset = new ArrayList<>();
-        for (int i = 0; i < 50; i++) {
+        for (int i = 0; i < 10; i++) {
             Message msg = new Message();
             msg.setContent("Hello Mars" + i);
             mDateset.add(msg);
         }
         MessageListAdapter adapter = new MessageListAdapter(mDateset);
         mRecyclerView.setAdapter(adapter);
+        mRecyclerView.addOnScrollListener(new RecyclerViewScrollerListener());
     }
 
     private void setListeners() {
@@ -99,6 +101,31 @@ public class MessageListActivity extends BaseActivity implements SwipeRefreshLay
                 Snackbar.make(mCoordinator, "Your message", Snackbar.LENGTH_SHORT)
                         .show();
                 break;
+        }
+    }
+
+    class RecyclerViewScrollerListener extends RecyclerView.OnScrollListener {
+        /**
+         * @param recyclerView
+         * @param newState     The RecyclerView is not currently scrolling.
+         *                     SCROLL_STATE_IDLE = 0;
+         *                     The RecyclerView is currently being dragged by outside input such as user touch input.
+         *                     SCROLL_STATE_DRAGGING = 1;
+         *                     The RecyclerView is currently animating to a final position while not under
+         *                     outside control.
+         *                     SCROLL_STATE_SETTLING = 2;
+         */
+        @Override
+        public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+            super.onScrollStateChanged(recyclerView, newState);
+            L.i("onScrollStateChanged", newState);
+        }
+
+        @Override
+        public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+            super.onScrolled(recyclerView, dx, dy);
+//            L.i("onScrolled,dx:", dx);
+//            L.i("onScrolled,dy:", dy);
         }
     }
 }

@@ -1,13 +1,13 @@
 package cn.edu.zju.planetweather.activity;
 
 import android.content.Intent;
+import android.graphics.Paint;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.LinearInterpolator;
 import android.view.animation.RotateAnimation;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -15,6 +15,8 @@ import android.widget.Toast;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+
+import net.frakbot.jumpingbeans.JumpingBeans;
 
 import cn.edu.zju.planetweather.R;
 import cn.edu.zju.planetweather.WeatherApplication;
@@ -32,10 +34,10 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
     private TextView mTemperatureTextView;
     private TextView mAtmoOpacityTextView;
-    private Button mButton;
+    private TextView mButton;
     private ImageView mImageView;
     private WeatherApplication helper;
-
+    private JumpingBeans mJumpBeans;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,6 +66,11 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         animation.setInterpolator(lin);
         mImageView.setAnimation(animation);
         animation.start();
+        mJumpBeans = JumpingBeans.with(mButton)
+                .appendJumpingDots()
+                .build();
+        mButton.getPaint().setFlags(Paint.UNDERLINE_TEXT_FLAG); //下划线
+        mButton.getPaint().setAntiAlias(true);//抗锯齿
     }
 
 
@@ -77,7 +84,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     private void findViews() {
         mTemperatureTextView = (TextView) findViewById(R.id.tv_temperature);
         mAtmoOpacityTextView = (TextView) findViewById(R.id.tv_atmo_opacity);
-        mButton = (Button) findViewById(R.id.btn_message_list);
+        mButton = (TextView) findViewById(R.id.btn_message_list);
         mImageView = (ImageView) findViewById(R.id.iv_center);
     }
 

@@ -48,14 +48,16 @@
         android:textColor="@color/white"
         android:textSize="18sp" />
 
-    <Button
+    <TextView
         android:id="@+id/btn_message_list"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
+        android:layout_margin="12dp"
+        android:layout_marginRight="18dp"
         android:background="@null"
-        android:text="寻找火星多年失散的兄弟" />
+        android:text="@string/s_find"
+        android:textSize="20sp" />
 </RelativeLayout>
