@@ -1,18 +1,18 @@
 package cn.edu.zju.planetweather.activity;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.LinearInterpolator;
 import android.view.animation.RotateAnimation;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -28,12 +28,15 @@ import cn.edu.zju.planetweather.net.APIConstant;
 import cn.edu.zju.planetweather.net.AbsCustomJsonRequest;
 import cn.edu.zju.planetweather.net.WeatherJsonRequest;
 
+
 /**
  *
  */
-public class MainActivity extends Activity {
+public class MainActivity extends Activity implements View.OnClickListener {
 
     private TextView mTemperatureTextView;
+    private TextView mAtmoOpacityTextView;
+    private Button mButton;
     private ImageView mImageView;
     private WeatherApplication helper;
 
@@ -44,9 +47,14 @@ public class MainActivity extends Activity {
         helper = WeatherApplication.getInstance();
         transparentStatusBar();
         findViews();
+        setListeners();
         setTypefaces();
         setAnimations();
         loadWeatherData();
+    }
+
+    private void setListeners() {
+        mButton.setOnClickListener(this);
     }
 
     private void setAnimations() {
@@ -79,11 +87,15 @@ public class MainActivity extends Activity {
 
     private void setTypefaces() {
         Typeface typeface = Typeface.createFromAsset(getAssets(), "fonts/Lato-Hairline.ttf");
+        Typeface regularTypeface = Typeface.createFromAsset(getAssets(), "fonts/Lato-Regular.ttf");
         mTemperatureTextView.setTypeface(typeface);
+        mAtmoOpacityTextView.setTypeface(regularTypeface);
     }
 
     private void findViews() {
         mTemperatureTextView = (TextView) findViewById(R.id.tv_temperature);
+        mAtmoOpacityTextView = (TextView) findViewById(R.id.tv_atmo_opacity);
+        mButton = (Button) findViewById(R.id.btn_message_list);
         mImageView = (ImageView) findViewById(R.id.iv_center);
     }
 
@@ -94,6 +106,7 @@ public class MainActivity extends Activity {
                     @Override
                     public void onResponse(Weather response) {
                         mTemperatureTextView.setText(response.getSol() + "°");
+                        mAtmoOpacityTextView.setText(response.getAtmo_opacity());
                     }
                 }, new Response.ErrorListener() {
             @Override
@@ -106,24 +119,14 @@ public class MainActivity extends Activity {
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.btn_message_list:
+                Intent intent = new Intent(this, MessageListActivity.class);
+                startActivity(intent);
+                break;
+            default:
+                break;
         }
-
-        return super.onOptionsItemSelected(item);
     }
 }

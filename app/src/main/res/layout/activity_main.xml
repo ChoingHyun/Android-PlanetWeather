@@ -34,4 +34,28 @@
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:src="@mipmap/ic_launcher" />
+
+    <TextView
+        android:id="@+id/tv_atmo_opacity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/tv_temperature"
+        android:layout_alignStart="@+id/tv_temperature"
+        android:layout_below="@+id/tv_temperature"
+        android:layout_marginLeft="4dp"
+        android:layout_marginTop="4dp"
+        android:text="Rain"
+        android:textColor="@color/white"
+        android:textSize="18sp" />
+
+    <Button
+        android:id="@+id/btn_message_list"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:background="@null"
+        android:text="寻找火星多年失散的兄弟" />
 </RelativeLayout>

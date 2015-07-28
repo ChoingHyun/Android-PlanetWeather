@@ -3,6 +3,7 @@
     package="cn.edu.zju.planetweather" >
 
     <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:name=".WeatherApplication"
         android:allowBackup="true"
@@ -18,7 +19,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
+        <activity
+            android:name=".activity.MessageListActivity"
+            android:label="@string/title_activity_message_list"></activity>
     </application>
 
 </manifest>
