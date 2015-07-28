@@ -7,6 +7,8 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 
+import com.avos.avoscloud.AVAnalytics;
+
 import me.imid.swipebacklayout.lib.app.SwipeBackActivity;
 
 public class SwipeBaseActivity extends SwipeBackActivity {
@@ -14,6 +16,7 @@ public class SwipeBaseActivity extends SwipeBackActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        AVAnalytics.trackAppOpened(getIntent());
     }
 
     protected void transparentStatusBar() {

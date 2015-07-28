@@ -3,6 +3,7 @@
     package="cn.edu.zju.planetweather" >
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:name=".WeatherApplication"
@@ -24,7 +25,10 @@
             android:label="@string/title_activity_message_list" />
         <activity
             android:name=".activity.base.BaseActivity"
-            android:label="@string/title_activity_base"></activity>
+            android:label="@string/title_activity_base" />
+        <activity
+            android:name=".activity.PublishActivity"
+            android:label="@string/title_activity_publish"></activity>
     </application>
 
 </manifest>
