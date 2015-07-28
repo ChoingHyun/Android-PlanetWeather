@@ -18,7 +18,7 @@ import cn.edu.zju.planetweather.view.DividerItemDecoration;
 
 public class MessageListActivity extends BaseActivity implements SwipeRefreshLayout.OnRefreshListener {
 
-    private RecyclerView mRecycleView;
+    private RecyclerView mRecyclerView;
     private List<Message> mDateset;
     private SwipeRefreshLayout mRefreshLayout;
     @Override
@@ -29,8 +29,8 @@ public class MessageListActivity extends BaseActivity implements SwipeRefreshLay
         findViews();
         setListeners();
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-        mRecycleView.setLayoutManager(layoutManager);
-        mRecycleView.addItemDecoration(new DividerItemDecoration(
+        mRecyclerView.setLayoutManager(layoutManager);
+        mRecyclerView.addItemDecoration(new DividerItemDecoration(
                 this, LinearLayoutManager.VERTICAL));
         mDateset = new ArrayList<>();
         for (int i = 0; i < 10; i++) {
@@ -39,7 +39,7 @@ public class MessageListActivity extends BaseActivity implements SwipeRefreshLay
             mDateset.add(msg);
         }
         MessageListAdapter adapter = new MessageListAdapter(mDateset);
-        mRecycleView.setAdapter(adapter);
+        mRecyclerView.setAdapter(adapter);
     }
 
     private void setListeners() {
@@ -47,7 +47,7 @@ public class MessageListActivity extends BaseActivity implements SwipeRefreshLay
     }
 
     private void findViews() {
-        mRecycleView = (RecyclerView) findViewById(R.id.rv_message_list);
+        mRecyclerView = (RecyclerView) findViewById(R.id.rv_message_list);
         mRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipe_refresh_widget);
     }
 
