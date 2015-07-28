@@ -1,11 +1,15 @@
 package cn.edu.zju.planetweather.activity;
 
 import android.os.Bundle;
+import android.support.design.widget.CoordinatorLayout;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,11 +20,13 @@ import cn.edu.zju.planetweather.adapter.MessageListAdapter;
 import cn.edu.zju.planetweather.entity.Message;
 import cn.edu.zju.planetweather.view.DividerItemDecoration;
 
-public class MessageListActivity extends BaseActivity implements SwipeRefreshLayout.OnRefreshListener {
+public class MessageListActivity extends BaseActivity implements SwipeRefreshLayout.OnRefreshListener, View.OnClickListener {
 
     private RecyclerView mRecyclerView;
     private List<Message> mDateset;
     private SwipeRefreshLayout mRefreshLayout;
+    private FloatingActionButton mActionButton;
+    private CoordinatorLayout mCoordinator;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,7 +39,7 @@ public class MessageListActivity extends BaseActivity implements SwipeRefreshLay
         mRecyclerView.addItemDecoration(new DividerItemDecoration(
                 this, LinearLayoutManager.VERTICAL));
         mDateset = new ArrayList<>();
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 50; i++) {
             Message msg = new Message();
             msg.setContent("Hello Mars" + i);
             mDateset.add(msg);
@@ -44,11 +50,14 @@ public class MessageListActivity extends BaseActivity implements SwipeRefreshLay
 
     private void setListeners() {
         mRefreshLayout.setOnRefreshListener(this);
+        mActionButton.setOnClickListener(this);
     }
 
     private void findViews() {
         mRecyclerView = (RecyclerView) findViewById(R.id.rv_message_list);
         mRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipe_refresh_widget);
+        mActionButton = (FloatingActionButton) findViewById(R.id.fab_normal);
+        mCoordinator = (CoordinatorLayout) findViewById(R.id.main_content);
     }
 
     @Override
@@ -81,5 +90,15 @@ public class MessageListActivity extends BaseActivity implements SwipeRefreshLay
 //            e.printStackTrace();
 //        }
         mRefreshLayout.setRefreshing(false);
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.fab_normal:
+                Snackbar.make(mCoordinator, "Your message", Snackbar.LENGTH_SHORT)
+                        .show();
+                break;
+        }
     }
 }

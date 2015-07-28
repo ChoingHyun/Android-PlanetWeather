@@ -1,5 +1,6 @@
 package cn.edu.zju.planetweather.adapter;
 
+import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
@@ -7,6 +8,7 @@ import android.widget.TextView;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Random;
 
 import cn.edu.zju.planetweather.R;
 import cn.edu.zju.planetweather.entity.Message;
@@ -25,6 +27,7 @@ public class MessageListAdapter extends RecyclerView.Adapter<MessageListAdapter.
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
         View view = View.inflate(viewGroup.getContext(), R.layout.item_message, null);
+        view.setBackgroundColor(Color.argb(new Random(System.currentTimeMillis()).nextInt(255), new Random(System.currentTimeMillis()).nextInt(255), new Random(System.currentTimeMillis()).nextInt(255), new Random().nextInt(255)));
         ViewHolder viewHolder = new ViewHolder(view);
         return viewHolder;
     }
