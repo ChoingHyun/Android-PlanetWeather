@@ -1,14 +1,9 @@
 package cn.edu.zju.planetweather.activity;
 
-import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Color;
 import android.graphics.Typeface;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.LinearInterpolator;
 import android.view.animation.RotateAnimation;
@@ -23,6 +18,7 @@ import com.android.volley.VolleyError;
 
 import cn.edu.zju.planetweather.R;
 import cn.edu.zju.planetweather.WeatherApplication;
+import cn.edu.zju.planetweather.activity.base.BaseActivity;
 import cn.edu.zju.planetweather.entity.Weather;
 import cn.edu.zju.planetweather.net.APIConstant;
 import cn.edu.zju.planetweather.net.AbsCustomJsonRequest;
@@ -32,7 +28,7 @@ import cn.edu.zju.planetweather.net.WeatherJsonRequest;
 /**
  *
  */
-public class MainActivity extends Activity implements View.OnClickListener {
+public class MainActivity extends BaseActivity implements View.OnClickListener {
 
     private TextView mTemperatureTextView;
     private TextView mAtmoOpacityTextView;
@@ -68,20 +64,6 @@ public class MainActivity extends Activity implements View.OnClickListener {
         animation.setInterpolator(lin);
         mImageView.setAnimation(animation);
         animation.start();
-    }
-
-    private void transparentStatusBar() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            Window window = getWindow();
-            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS
-                    | WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
-            window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-                    | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-                    | View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
-            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-            window.setStatusBarColor(Color.TRANSPARENT);
-            window.setNavigationBarColor(Color.TRANSPARENT);
-        }
     }
 
 

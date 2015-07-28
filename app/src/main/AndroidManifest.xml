@@ -21,7 +21,10 @@
         </activity>
         <activity
             android:name=".activity.MessageListActivity"
-            android:label="@string/title_activity_message_list"></activity>
+            android:label="@string/title_activity_message_list" />
+        <activity
+            android:name=".activity.base.BaseActivity"
+            android:label="@string/title_activity_base"></activity>
     </application>
 
 </manifest>
