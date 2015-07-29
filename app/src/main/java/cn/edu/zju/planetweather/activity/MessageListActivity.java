@@ -4,11 +4,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.ImageView;
 
 import com.avos.avoscloud.AVException;
 import com.avos.avoscloud.AVObject;
@@ -22,17 +22,20 @@ import cn.edu.zju.planetweather.R;
 import cn.edu.zju.planetweather.activity.base.SwipeBaseActivity;
 import cn.edu.zju.planetweather.adapter.MessageListAdapter;
 import cn.edu.zju.planetweather.entity.Message;
-import cn.edu.zju.planetweather.leanclound.Tables;
+import cn.edu.zju.planetweather.leancloud.Tables;
 import cn.edu.zju.planetweather.utils.L;
 import cn.edu.zju.planetweather.view.DividerItemDecoration;
 
 public class MessageListActivity extends SwipeBaseActivity implements SwipeRefreshLayout.OnRefreshListener, View.OnClickListener {
 
     private RecyclerView mRecyclerView;
+    private ImageView mBackView;
     private List<Message> mDateset;
     private SwipeRefreshLayout mRefreshLayout;
     private FloatingActionButton mActionButton;
     private CoordinatorLayout mCoordinator;
+    private MessageListAdapter adapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,12 +48,12 @@ public class MessageListActivity extends SwipeBaseActivity implements SwipeRefre
         mRecyclerView.addItemDecoration(new DividerItemDecoration(
                 this, LinearLayoutManager.VERTICAL));
         mDateset = new ArrayList<>();
-        for (int i = 0; i < 10; i++) {
-            Message msg = new Message();
-            msg.setContent("Hello Mars" + i);
-            mDateset.add(msg);
-        }
-        MessageListAdapter adapter = new MessageListAdapter(mDateset);
+//        for (int i = 0; i < 10; i++) {
+//            Message msg = new Message();
+//            msg.setContent("Hello Mars" + i);
+//            mDateset.add(msg);
+//        }
+        adapter = new MessageListAdapter(mDateset);
         mRecyclerView.setAdapter(adapter);
         mRecyclerView.addOnScrollListener(new RecyclerViewScrollerListener());
         AVQuery<AVObject> query = new AVQuery<>(Tables.TABLE_MESSAGE);
@@ -58,7 +61,13 @@ public class MessageListActivity extends SwipeBaseActivity implements SwipeRefre
             @Override
             public void done(List<AVObject> list, AVException e) {
                 if (list != null) {
-                    showShortToast(list.toString() + "");
+//                    showShortToast(list.toString() + "");
+                    for (int i = 0; i < list.size(); i++) {
+                        Message msg = new Message();
+                        msg.setContent(list.get(i).getString(Tables.ROW_CONTENT));
+                        mDateset.add(msg);
+                    }
+                    adapter.notifyDataSetChanged();
                 } else {
                     showShortToast("null list");
                 }
@@ -70,6 +79,7 @@ public class MessageListActivity extends SwipeBaseActivity implements SwipeRefre
     private void setListeners() {
         mRefreshLayout.setOnRefreshListener(this);
         mActionButton.setOnClickListener(this);
+        mBackView.setOnClickListener(this);
     }
 
     private void findViews() {
@@ -77,6 +87,7 @@ public class MessageListActivity extends SwipeBaseActivity implements SwipeRefre
         mRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipe_refresh_widget);
         mActionButton = (FloatingActionButton) findViewById(R.id.fab_normal);
         mCoordinator = (CoordinatorLayout) findViewById(R.id.main_content);
+        mBackView = (ImageView) findViewById(R.id.tv_back);
     }
 
     @Override
@@ -93,10 +104,15 @@ public class MessageListActivity extends SwipeBaseActivity implements SwipeRefre
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.fab_normal:
-                Snackbar.make(mCoordinator, "Your message", Snackbar.LENGTH_SHORT)
-                        .show();
+//                Snackbar.make(mCoordinator, "Your message", Snackbar.LENGTH_SHORT)
+//                        .show();
                 Intent intent = new Intent(this, PublishActivity.class);
                 startActivity(intent);
+                break;
+            case R.id.tv_back:
+                finish();
+                break;
+            default:
                 break;
         }
     }

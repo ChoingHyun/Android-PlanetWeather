@@ -4,11 +4,15 @@ import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.design.widget.CoordinatorLayout;
+import android.support.design.widget.Snackbar;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.LinearInterpolator;
 import android.view.animation.RotateAnimation;
+import android.view.animation.ScaleAnimation;
+import android.view.animation.TranslateAnimation;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -40,10 +44,13 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     private TextView mTemperatureTextView;
     private TextView mAtmoOpacityTextView;
     private TextView mButton;
+    private TextView mMarsCartoonView;
     private ImageView mImageView;
     private WeatherApplication helper;
     private JumpingBeans mJumpBeans;
     private Handler mHandler = new Handler();
+    private CoordinatorLayout mCoordinator;
+    private TranslateAnimation translateAnimation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +63,60 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         setTypefaces();
         setAnimations();
         loadWeatherData();
+
+        Snackbar snackbar = Snackbar.make(mCoordinator, "大家好,我是Mars,也就是大家熟知的火星,右上方转动着的星球就是我的真容啦!", Snackbar.LENGTH_INDEFINITE);
+        snackbar.setAction("继续看", new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showSecondSnackbar();
+                translateAnimation.cancel();
+            }
+        }).show();
+        translateAnimation = new TranslateAnimation(0, 300, 0, 0);
+        translateAnimation.setDuration(3000);               //设置动画持续时间
+        translateAnimation.setRepeatCount(3);               //设置重复次数
+        translateAnimation.setRepeatMode(Animation.REVERSE);    //反方向执行
+        mMarsCartoonView.setAnimation(translateAnimation);             //设置动画效果
+        translateAnimation.start();
+    }
+
+    private void showSecondSnackbar() {
+        Snackbar snackbar = Snackbar.make(mCoordinator, "在星球上面就是Mars的天气,火星看着红红的,但气温一般都是零下哦~", Snackbar.LENGTH_INDEFINITE);
+        snackbar.setAction("继续看", new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ShowThirdSnackbar();
+            }
+        }).show();
+        ScaleAnimation animation = new ScaleAnimation(0.5f, 1.4f, 0.5f, 1.4f,
+                Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
+        animation.setDuration(3000);//设置动画持续时间
+
+        animation.setRepeatCount(1);//设置重复次数
+        animation.setFillAfter(false);//动画执行完后是否停留在执行完的状态
+        animation.setStartOffset(500);//执行前的等待时间
+        mTemperatureTextView.setAnimation(animation);
+        mAtmoOpacityTextView.setAnimation(animation);
+        animation.start();
+    }
+
+    private void ShowThirdSnackbar() {
+        Snackbar snackbar = Snackbar.make(mCoordinator, "看!右下方有个神奇会动的按钮,点击探索发现更多,超乎你得想象", Snackbar.LENGTH_INDEFINITE);
+        snackbar.setAction("继续看", new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        }).show();
+        ScaleAnimation animation = new ScaleAnimation(1.0f, 1.2f, 1.0f, 1.2f,
+                Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
+        animation.setDuration(3000);//设置动画持续时间
+
+        animation.setRepeatCount(1);//设置重复次数
+        animation.setFillAfter(false);//动画执行完后是否停留在执行完的状态
+        animation.setStartOffset(1000);//执行前的等待时间
+        mButton.setAnimation(animation);
+        animation.start();
     }
 
     private void setListeners() {
@@ -94,6 +155,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         mAtmoOpacityTextView = (TextView) findViewById(R.id.tv_atmo_opacity);
         mButton = (TextView) findViewById(R.id.btn_message_list);
         mImageView = (ImageView) findViewById(R.id.iv_center);
+        mCoordinator = (CoordinatorLayout) findViewById(R.id.cl_main_content);
+        mMarsCartoonView = (TextView) findViewById(R.id.tv_mars_cartoon);
     }
 
     private void loadWeatherData() {
@@ -132,7 +195,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
             if (isExit == false) {
                 isExit = true;
-                Toast.makeText(this, "再按一次离开火星人的天气预报指南", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "再按一次离开火星人专属的天气预报", Toast.LENGTH_SHORT).show();
                 mHandler.postDelayed(new Runnable() {
                     @Override
                     public void run() {

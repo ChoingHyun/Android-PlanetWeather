@@ -32,6 +32,14 @@
             android:text="publish"
             android:textColor="@android:color/holo_blue_light"
             android:textSize="18dp" />
+
+        <ImageView
+            android:id="@+id/tv_back"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_centerVertical="true"
+            android:padding="12dp"
+            android:src="@mipmap/ic_back" />
     </RelativeLayout>
 
     <android.support.v7.widget.CardView xmlns:app="http://schemas.android.com/apk/res-auto"

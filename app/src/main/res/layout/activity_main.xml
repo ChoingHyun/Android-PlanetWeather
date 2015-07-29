@@ -1,62 +1,81 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cl_main_content"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@mipmap/ic_mars"
-    tools:context=".MainActivity">
+    android:layout_height="match_parent">
 
+    <RelativeLayout
 
-    <TextView
-        android:id="@+id/tv_temperature"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="72dp"
-        android:text="-"
-        android:textColor="@color/white"
-        android:textSize="54sp" />
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@mipmap/ic_mars"
+        android:paddingBottom="72dp"
+        tools:context=".MainActivity">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="163dp"
-        android:text="天气转冷,来自星星的你请注意保暖"
-        android:textSize="18sp"
-        android:visibility="gone" />
+        <TextView
+            android:id="@+id/tv_temperature"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="92dp"
+            android:text="-"
+            android:textColor="@color/white"
+            android:textSize="54sp" />
 
-    <ImageView
-        android:id="@+id/iv_center"
-        android:layout_width="170dp"
-        android:layout_height="170dp"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:src="@mipmap/ic_mars_center" />
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="163dp"
+            android:text="天气转冷,来自星星的你请注意保暖"
+            android:textSize="18sp"
+            android:visibility="gone" />
 
-    <TextView
-        android:id="@+id/tv_atmo_opacity"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/tv_temperature"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="8dp"
-        android:text="Rain"
-        android:textColor="@color/white"
-        android:textSize="32sp" />
+        <ImageView
+            android:id="@+id/iv_center"
+            android:layout_width="170dp"
+            android:layout_height="170dp"
+            android:layout_below="@+id/tv_atmo_opacity"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="12dp"
+            android:src="@mipmap/ic_mars_center" />
 
-    <TextView
-        android:id="@+id/btn_message_list"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_margin="12dp"
-        android:layout_marginRight="18dp"
-        android:background="@null"
-        android:text="@string/s_find"
-        android:textSize="20sp" />
-</RelativeLayout>
+        <TextView
+            android:id="@+id/tv_atmo_opacity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_temperature"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="8dp"
+            android:text="Rain"
+            android:textColor="@color/white"
+            android:textSize="32sp" />
+
+        <TextView
+            android:id="@+id/btn_message_list"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_margin="12dp"
+            android:layout_marginRight="18dp"
+            android:background="@null"
+            android:text="@string/s_find"
+            android:textColor="@android:color/white"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/tv_mars_cartoon"
+            android:layout_width="230dp"
+            android:layout_height="180dp"
+            android:layout_alignParentBottom="true"
+            android:layout_margin="10dp"
+
+            android:background="@mipmap/ic_mars_cartoon"
+            android:gravity="bottom|left" />
+    </RelativeLayout>
+</android.support.design.widget.CoordinatorLayout>
