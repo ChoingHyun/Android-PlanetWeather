@@ -1,9 +1,10 @@
 package cn.edu.zju.planetweather.activity;
 
 import android.content.Intent;
-import android.graphics.Paint;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.os.Handler;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.LinearInterpolator;
@@ -32,12 +33,18 @@ import cn.edu.zju.planetweather.net.WeatherJsonRequest;
  */
 public class MainActivity extends BaseActivity implements View.OnClickListener {
 
+    /**
+     * 点击返回键退出程序
+     */
+    private static Boolean isExit = false;
     private TextView mTemperatureTextView;
     private TextView mAtmoOpacityTextView;
     private TextView mButton;
     private ImageView mImageView;
     private WeatherApplication helper;
     private JumpingBeans mJumpBeans;
+    private Handler mHandler = new Handler();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,9 +65,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     private void setAnimations() {
         RotateAnimation animation = new RotateAnimation(0f, 360f, Animation.RELATIVE_TO_SELF,
                 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
-        animation.setDuration(10000);//设置动画持续时间
+        animation.setDuration(15000);//设置动画持续时间
         /** 常用方法 */
-        animation.setRepeatCount(3);//设置重复次数
+        animation.setRepeatCount(30);//设置重复次数
         animation.setFillAfter(true);
         LinearInterpolator lin = new LinearInterpolator();//匀速旋转
         animation.setInterpolator(lin);
@@ -69,16 +76,17 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         mJumpBeans = JumpingBeans.with(mButton)
                 .appendJumpingDots()
                 .build();
-        mButton.getPaint().setFlags(Paint.UNDERLINE_TEXT_FLAG); //下划线
-        mButton.getPaint().setAntiAlias(true);//抗锯齿
+//        mButton.getPaint().setFlags(Paint.UNDERLINE_TEXT_FLAG); //下划线
+//        mButton.getPaint().setAntiAlias(true);//抗锯齿
     }
-
 
     private void setTypefaces() {
         Typeface typeface = Typeface.createFromAsset(getAssets(), "fonts/Lato-Hairline.ttf");
+        Typeface hairlineItalicTypeface = Typeface.createFromAsset(getAssets(), "fonts/Lato-HairlineItalic.ttf");
         Typeface regularTypeface = Typeface.createFromAsset(getAssets(), "fonts/Lato-Regular.ttf");
         mTemperatureTextView.setTypeface(typeface);
-        mAtmoOpacityTextView.setTypeface(regularTypeface);
+        mAtmoOpacityTextView.setTypeface(hairlineItalicTypeface);
+        mButton.setTypeface(regularTypeface);
     }
 
     private void findViews() {
@@ -117,5 +125,25 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             default:
                 break;
         }
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            if (isExit == false) {
+                isExit = true;
+                Toast.makeText(this, "再按一次离开火星人的天气预报指南", Toast.LENGTH_SHORT).show();
+                mHandler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        isExit = false;
+                    }
+                }, 2000);
+            } else {
+                finish();
+                System.exit(0);
+            }
+        }
+        return false;
     }
 }

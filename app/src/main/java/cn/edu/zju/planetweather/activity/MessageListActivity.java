@@ -10,6 +10,11 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
+import com.avos.avoscloud.AVException;
+import com.avos.avoscloud.AVObject;
+import com.avos.avoscloud.AVQuery;
+import com.avos.avoscloud.FindCallback;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,6 +22,7 @@ import cn.edu.zju.planetweather.R;
 import cn.edu.zju.planetweather.activity.base.SwipeBaseActivity;
 import cn.edu.zju.planetweather.adapter.MessageListAdapter;
 import cn.edu.zju.planetweather.entity.Message;
+import cn.edu.zju.planetweather.leanclound.Tables;
 import cn.edu.zju.planetweather.utils.L;
 import cn.edu.zju.planetweather.view.DividerItemDecoration;
 
@@ -47,6 +53,18 @@ public class MessageListActivity extends SwipeBaseActivity implements SwipeRefre
         MessageListAdapter adapter = new MessageListAdapter(mDateset);
         mRecyclerView.setAdapter(adapter);
         mRecyclerView.addOnScrollListener(new RecyclerViewScrollerListener());
+        AVQuery<AVObject> query = new AVQuery<>(Tables.TABLE_MESSAGE);
+        query.findInBackground(new FindCallback<AVObject>() {
+            @Override
+            public void done(List<AVObject> list, AVException e) {
+                if (list != null) {
+                    showShortToast(list.toString() + "");
+                } else {
+                    showShortToast("null list");
+                }
+            }
+        });
+
     }
 
     private void setListeners() {
