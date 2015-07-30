@@ -88,11 +88,11 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 ShowThirdSnackbar();
             }
         }).show();
-        ScaleAnimation animation = new ScaleAnimation(0.5f, 1.4f, 0.5f, 1.4f,
+        ScaleAnimation animation = new ScaleAnimation(1.0f, 1.4f, 1.0f, 1.4f,
                 Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
         animation.setDuration(3000);//设置动画持续时间
 
-        animation.setRepeatCount(1);//设置重复次数
+        animation.setRepeatCount(0);//设置重复次数
         animation.setFillAfter(false);//动画执行完后是否停留在执行完的状态
         animation.setStartOffset(500);//执行前的等待时间
         mTemperatureTextView.setAnimation(animation);
@@ -108,15 +108,15 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
             }
         }).show();
-        ScaleAnimation animation = new ScaleAnimation(1.0f, 1.2f, 1.0f, 1.2f,
-                Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
-        animation.setDuration(3000);//设置动画持续时间
-
-        animation.setRepeatCount(1);//设置重复次数
-        animation.setFillAfter(false);//动画执行完后是否停留在执行完的状态
-        animation.setStartOffset(1000);//执行前的等待时间
-        mButton.setAnimation(animation);
-        animation.start();
+//        ScaleAnimation animation = new ScaleAnimation(1.0f, 1.2f, 1.0f, 1.2f,
+//                Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
+//        animation.setDuration(3000);//设置动画持续时间
+//
+//        animation.setRepeatCount(1);//设置重复次数
+//        animation.setFillAfter(false);//动画执行完后是否停留在执行完的状态
+//        animation.setStartOffset(1000);//执行前的等待时间
+//        mButton.setAnimation(animation);
+//        animation.start();
     }
 
     private void setListeners() {

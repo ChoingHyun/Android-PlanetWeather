@@ -5,6 +5,6 @@
     <string name="action_settings">Settings</string>
     <string name="title_activity_message_list">MessageListActivity</string>
     <string name="title_activity_base">BaseActivity</string>
-    <string name="s_find">Find more</string>
+    <string name="s_find">Messages</string>
     <string name="title_activity_publish">PublishActivity</string>
 </resources>

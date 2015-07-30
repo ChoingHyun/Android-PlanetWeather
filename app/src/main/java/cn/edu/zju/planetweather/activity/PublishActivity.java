@@ -19,6 +19,7 @@ import com.avos.avoscloud.SaveCallback;
 import cn.edu.zju.planetweather.R;
 import cn.edu.zju.planetweather.activity.base.BaseActivity;
 import cn.edu.zju.planetweather.leancloud.Tables;
+import de.greenrobot.event.EventBus;
 
 public class PublishActivity extends BaseActivity implements View.OnClickListener {
 
@@ -99,6 +100,7 @@ public class PublishActivity extends BaseActivity implements View.OnClickListene
                 if (e == null) {
                     showShortToast("发表成功到火星");
                     finish();
+                    EventBus.getDefault().post(new String(""));
                 } else {
                     showShortToast("与火星通讯失败,请检查网络");
                     Resources resource = getBaseContext().getResources();

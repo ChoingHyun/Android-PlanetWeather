@@ -25,6 +25,7 @@ import cn.edu.zju.planetweather.entity.Message;
 import cn.edu.zju.planetweather.leancloud.Tables;
 import cn.edu.zju.planetweather.utils.L;
 import cn.edu.zju.planetweather.view.DividerItemDecoration;
+import de.greenrobot.event.EventBus;
 
 public class MessageListActivity extends SwipeBaseActivity implements SwipeRefreshLayout.OnRefreshListener, View.OnClickListener {
 
@@ -40,6 +41,7 @@ public class MessageListActivity extends SwipeBaseActivity implements SwipeRefre
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_message_list);
+        EventBus.getDefault().register(this);
         transparentStatusBar();
         findViews();
         setListeners();
@@ -56,7 +58,13 @@ public class MessageListActivity extends SwipeBaseActivity implements SwipeRefre
         adapter = new MessageListAdapter(mDateset);
         mRecyclerView.setAdapter(adapter);
         mRecyclerView.addOnScrollListener(new RecyclerViewScrollerListener());
+        loadData();
+
+    }
+
+    private void loadData() {
         AVQuery<AVObject> query = new AVQuery<>(Tables.TABLE_MESSAGE);
+        query.orderByDescending("createdAt");
         query.findInBackground(new FindCallback<AVObject>() {
             @Override
             public void done(List<AVObject> list, AVException e) {
@@ -71,9 +79,11 @@ public class MessageListActivity extends SwipeBaseActivity implements SwipeRefre
                 } else {
                     showShortToast("null list");
                 }
+                if (mRefreshLayout.isRefreshing() == true) {
+                    mRefreshLayout.setRefreshing(false);
+                }
             }
         });
-
     }
 
     private void setListeners() {
@@ -97,7 +107,9 @@ public class MessageListActivity extends SwipeBaseActivity implements SwipeRefre
 //        } catch (InterruptedException e) {
 //            e.printStackTrace();
 //        }
-        mRefreshLayout.setRefreshing(false);
+        mDateset.clear();
+        loadData();
+
     }
 
     @Override
@@ -115,6 +127,22 @@ public class MessageListActivity extends SwipeBaseActivity implements SwipeRefre
             default:
                 break;
         }
+    }
+
+    /**
+     * called by envntbus
+     *
+     * @param event
+     */
+    public void onEventMainThread(String event) {
+        mDateset.clear();
+        loadData();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
     }
 
     class RecyclerViewScrollerListener extends RecyclerView.OnScrollListener {
