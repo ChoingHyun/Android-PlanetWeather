@@ -42,7 +42,7 @@ public class MessageListActivity extends SwipeBaseActivity implements SwipeRefre
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_message_list);
         EventBus.getDefault().register(this);
-        transparentStatusBar();
+//        transparentStatusBar();
         findViews();
         setListeners();
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);

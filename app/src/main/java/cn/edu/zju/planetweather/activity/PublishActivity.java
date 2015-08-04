@@ -31,7 +31,7 @@ public class PublishActivity extends BaseActivity implements View.OnClickListene
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_publish);
-        transparentStatusBar();
+//        transparentStatusBar();
         initViews();
         setListeners();
 

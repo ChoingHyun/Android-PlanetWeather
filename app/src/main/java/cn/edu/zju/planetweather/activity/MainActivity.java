@@ -30,6 +30,7 @@ import cn.edu.zju.planetweather.entity.Weather;
 import cn.edu.zju.planetweather.net.APIConstant;
 import cn.edu.zju.planetweather.net.AbsCustomJsonRequest;
 import cn.edu.zju.planetweather.net.WeatherJsonRequest;
+import cn.edu.zju.planetweather.utils.LaunchUtil;
 
 
 /**
@@ -68,7 +69,13 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         setTypefaces();
         setAnimations();
         loadWeatherData();
+        if (LaunchUtil.isFirstLaunch(this)) {
+            showFirstSnackbar();
+        }
 
+    }
+
+    private void showFirstSnackbar() {
         Snackbar snackbar = Snackbar.make(mCoordinator, "大家好,我是Mars,也就是大家熟知的火星,右上方转动着的星球就是我的真容啦!", Snackbar.LENGTH_INDEFINITE);
         snackbar.setAction("继续看", new View.OnClickListener() {
             @Override
@@ -150,6 +157,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         Typeface typeface = Typeface.createFromAsset(getAssets(), "fonts/Lato-Hairline.ttf");
         Typeface hairlineItalicTypeface = Typeface.createFromAsset(getAssets(), "fonts/Lato-HairlineItalic.ttf");
         Typeface regularTypeface = Typeface.createFromAsset(getAssets(), "fonts/Lato-Regular.ttf");
+        Typeface lightTypeface = Typeface.createFromAsset(getAssets(), "fonts/Lato-Light.ttf");
         mTemperatureTextView.setTypeface(typeface);
         mAtmoOpacityTextView.setTypeface(hairlineItalicTypeface);
         mMaxTempView.setTypeface(typeface);
@@ -157,7 +165,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         mMaxTempTipView.setTypeface(typeface);
         mMinTempTipView.setTypeface(typeface);
         mSeasonView.setTypeface(typeface);
-        mButton.setTypeface(regularTypeface);
+        mButton.setTypeface(lightTypeface);
     }
 
     private void findViews() {
