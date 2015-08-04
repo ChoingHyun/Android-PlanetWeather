@@ -77,5 +77,65 @@
             android:background="@mipmap/ic_mars_cartoon"
             android:gravity="bottom|left"
             android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/tv_min"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/iv_center"
+            android:layout_alignStart="@+id/iv_center"
+            android:layout_below="@+id/iv_center"
+            android:layout_marginTop="18dp"
+            android:text="Min Temp:  "
+            android:textColor="@android:color/white"
+            android:textSize="18sp" />
+
+
+        <TextView
+            android:id="@+id/tv_min_temp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignEnd="@+id/iv_center"
+            android:layout_alignRight="@+id/iv_center"
+            android:layout_alignTop="@+id/tv_min"
+            android:layout_centerHorizontal="true"
+            android:text="-"
+            android:textColor="@android:color/white"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/tv_max"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/tv_min"
+            android:layout_alignStart="@+id/tv_min"
+            android:layout_below="@+id/tv_min"
+            android:layout_marginTop="14dp"
+            android:text="Max Temp:  "
+            android:textColor="@android:color/white"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/tv_max_temp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/tv_min_temp"
+            android:layout_alignStart="@+id/tv_min_temp"
+            android:layout_alignTop="@+id/tv_max"
+
+            android:text="-"
+            android:textColor="@android:color/white"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/tv_season"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_max"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="14dp"
+            android:text="-"
+            android:textColor="@android:color/white"
+            android:textSize="18sp" />
     </RelativeLayout>
 </android.support.design.widget.CoordinatorLayout>

@@ -45,6 +45,11 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     private TextView mAtmoOpacityTextView;
     private TextView mButton;
     private TextView mMarsCartoonView;
+    private TextView mMinTempView;
+    private TextView mMaxTempView;
+    private TextView mSeasonView;
+    private TextView mMinTempTipView;
+    private TextView mMaxTempTipView;
     private ImageView mImageView;
     private WeatherApplication helper;
     private JumpingBeans mJumpBeans;
@@ -147,6 +152,11 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         Typeface regularTypeface = Typeface.createFromAsset(getAssets(), "fonts/Lato-Regular.ttf");
         mTemperatureTextView.setTypeface(typeface);
         mAtmoOpacityTextView.setTypeface(hairlineItalicTypeface);
+        mMaxTempView.setTypeface(typeface);
+        mMinTempView.setTypeface(typeface);
+        mMaxTempTipView.setTypeface(typeface);
+        mMinTempTipView.setTypeface(typeface);
+        mSeasonView.setTypeface(typeface);
         mButton.setTypeface(regularTypeface);
     }
 
@@ -154,6 +164,11 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         mTemperatureTextView = (TextView) findViewById(R.id.tv_temperature);
         mAtmoOpacityTextView = (TextView) findViewById(R.id.tv_atmo_opacity);
         mButton = (TextView) findViewById(R.id.btn_message_list);
+        mMaxTempView = (TextView) findViewById(R.id.tv_max_temp);
+        mMinTempView = (TextView) findViewById(R.id.tv_min_temp);
+        mSeasonView = (TextView) findViewById(R.id.tv_season);
+        mMaxTempTipView = (TextView) findViewById(R.id.tv_max);
+        mMinTempTipView = (TextView) findViewById(R.id.tv_min);
         mImageView = (ImageView) findViewById(R.id.iv_center);
         mCoordinator = (CoordinatorLayout) findViewById(R.id.cl_main_content);
         mMarsCartoonView = (TextView) findViewById(R.id.tv_mars_cartoon);
@@ -167,6 +182,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                     public void onResponse(Weather response) {
                         mTemperatureTextView.setText(response.getSol() + "°");
                         mAtmoOpacityTextView.setText(response.getAtmo_opacity());
+                        mMinTempView.setText(response.getMin_temp() + "°");
+                        mMaxTempView.setText(response.getMax_temp() + "°");
+                        mSeasonView.setText(response.getSeason());
                     }
                 }, new Response.ErrorListener() {
             @Override
