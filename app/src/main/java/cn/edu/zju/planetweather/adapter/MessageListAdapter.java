@@ -15,7 +15,7 @@ import cn.edu.zju.planetweather.utils.L;
 /**
  * Created by changhuiyuan on 15/7/28.
  */
-public class MessageListAdapter extends RecyclerView.Adapter<MessageListAdapter.ViewHolder> {
+public class MessageListAdapter extends RecyclerView.Adapter<MessageListAdapter.ViewHolder> implements View.OnClickListener {
 
     List<Message> dataset = Collections.emptyList();
     private int count = 0;
@@ -27,6 +27,7 @@ public class MessageListAdapter extends RecyclerView.Adapter<MessageListAdapter.
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
         View view = View.inflate(viewGroup.getContext(), R.layout.item_message, null);
+        view.setOnClickListener(this);
 //        view.setBackgroundColor(Color.argb(new Random(System.currentTimeMillis()).nextInt(255), new Random(System.currentTimeMillis()).nextInt(255), new Random(System.currentTimeMillis()).nextInt(255), new Random().nextInt(255)));
         int[] picIDs = {R.mipmap.ic_sky_03_resize, R.mipmap.ic_sky_07_resize, R.mipmap.ic_sky_11_resize};
         view.setBackgroundResource(picIDs[count % 3]);
@@ -45,6 +46,11 @@ public class MessageListAdapter extends RecyclerView.Adapter<MessageListAdapter.
     @Override
     public int getItemCount() {
         return dataset.size();
+    }
+
+    @Override
+    public void onClick(View v) {
+
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {

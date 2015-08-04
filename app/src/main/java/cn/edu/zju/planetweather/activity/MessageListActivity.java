@@ -47,6 +47,7 @@ public class MessageListActivity extends SwipeBaseActivity implements SwipeRefre
         setListeners();
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(layoutManager);
+        mRecyclerView.setHasFixedSize(true);
         mRecyclerView.addItemDecoration(new DividerItemDecoration(
                 this, LinearLayoutManager.VERTICAL));
         mDateset = new ArrayList<>();

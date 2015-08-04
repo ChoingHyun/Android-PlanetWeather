@@ -36,8 +36,8 @@
 
         <ImageView
             android:id="@+id/iv_center"
-            android:layout_width="170dp"
-            android:layout_height="170dp"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
             android:layout_below="@+id/tv_atmo_opacity"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="12dp"
@@ -50,7 +50,7 @@
             android:layout_below="@+id/tv_temperature"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="8dp"
-            android:text="Rain"
+            android:text="—"
             android:textColor="@color/white"
             android:textSize="32sp" />
 
@@ -74,8 +74,8 @@
             android:layout_height="180dp"
             android:layout_alignParentBottom="true"
             android:layout_margin="10dp"
-
             android:background="@mipmap/ic_mars_cartoon"
-            android:gravity="bottom|left" />
+            android:gravity="bottom|left"
+            android:visibility="gone" />
     </RelativeLayout>
 </android.support.design.widget.CoordinatorLayout>

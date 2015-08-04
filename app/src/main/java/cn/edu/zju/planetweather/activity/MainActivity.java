@@ -96,7 +96,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         animation.setFillAfter(false);//动画执行完后是否停留在执行完的状态
         animation.setStartOffset(500);//执行前的等待时间
         mTemperatureTextView.setAnimation(animation);
-        mAtmoOpacityTextView.setAnimation(animation);
+//        mAtmoOpacityTextView.setAnimation(animation);
         animation.start();
     }
 
