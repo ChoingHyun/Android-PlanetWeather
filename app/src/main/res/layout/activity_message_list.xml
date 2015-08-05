@@ -18,14 +18,15 @@
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
             android:background="@null"
-            android:text="Anonymous Messages"
-            android:textSize="18dp" />
+            android:text="@string/messege_list_title"
+            android:textSize="18sp" />
 
         <ImageView
             android:id="@+id/tv_back"
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:layout_centerVertical="true"
+            android:contentDescription="@string/back"
             android:padding="12dp"
             android:src="@mipmap/ic_back" />
     </RelativeLayout>

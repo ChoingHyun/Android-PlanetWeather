@@ -19,7 +19,7 @@
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="92dp"
-            android:text="-"
+            android:text="@string/text_line"
             android:textColor="@color/white"
             android:textSize="54sp" />
 
@@ -30,7 +30,6 @@
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="163dp"
-            android:text="天气转冷,来自星星的你请注意保暖"
             android:textSize="18sp"
             android:visibility="gone" />
 
@@ -50,7 +49,7 @@
             android:layout_below="@+id/tv_temperature"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="8dp"
-            android:text="—"
+            android:text="@string/text_line"
             android:textColor="@color/white"
             android:textSize="32sp" />
 
@@ -86,7 +85,7 @@
             android:layout_alignStart="@+id/iv_center"
             android:layout_below="@+id/iv_center"
             android:layout_marginTop="18dp"
-            android:text="Min Temp:  "
+            android:text="@string/min_temp"
             android:textColor="@android:color/white"
             android:textSize="18sp" />
 
@@ -99,7 +98,7 @@
             android:layout_alignRight="@+id/iv_center"
             android:layout_alignTop="@+id/tv_min"
             android:layout_centerHorizontal="true"
-            android:text="-"
+            android:text="@string/text_line"
             android:textColor="@android:color/white"
             android:textSize="18sp" />
 
@@ -111,7 +110,7 @@
             android:layout_alignStart="@+id/tv_min"
             android:layout_below="@+id/tv_min"
             android:layout_marginTop="14dp"
-            android:text="Max Temp:  "
+            android:text="@string/max_temp"
             android:textColor="@android:color/white"
             android:textSize="18sp" />
 
@@ -122,8 +121,7 @@
             android:layout_alignLeft="@+id/tv_min_temp"
             android:layout_alignStart="@+id/tv_min_temp"
             android:layout_alignTop="@+id/tv_max"
-
-            android:text="-"
+            android:text="@string/text_line"
             android:textColor="@android:color/white"
             android:textSize="18sp" />
 
@@ -134,7 +132,7 @@
             android:layout_below="@+id/tv_max"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="14dp"
-            android:text="-"
+            android:text="@string/text_line"
             android:textColor="@android:color/white"
             android:textSize="18sp" />
     </RelativeLayout>

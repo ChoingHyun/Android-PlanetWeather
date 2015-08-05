@@ -188,7 +188,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 new Response.Listener<Weather>() {
                     @Override
                     public void onResponse(Weather response) {
-                        mTemperatureTextView.setText(response.getSol() + "°");
+                        double temp = response.getMin_temp() + response.getMax_temp();
+                        mTemperatureTextView.setText((int) (temp / 2) + "°");
                         mAtmoOpacityTextView.setText(response.getAtmo_opacity());
                         mMinTempView.setText(response.getMin_temp() + "°");
                         mMaxTempView.setText(response.getMax_temp() + "°");

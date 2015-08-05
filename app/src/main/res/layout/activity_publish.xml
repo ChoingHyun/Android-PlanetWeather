@@ -18,9 +18,9 @@
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
             android:background="@null"
-            android:text="Say to Mars"
+            android:text="@string/publish_title"
             android:textColor="@android:color/white"
-            android:textSize="18dp" />
+            android:textSize="18sp" />
 
         <TextView
             android:id="@+id/tv_publish"
@@ -31,9 +31,9 @@
             android:layout_alignTop="@+id/textView2"
             android:layout_marginRight="8dp"
             android:background="@null"
-            android:text="publish"
+            android:text="@string/publish_button"
             android:textColor="@android:color/holo_blue_light"
-            android:textSize="18dp" />
+            android:textSize="18sp" />
 
         <ImageView
             android:id="@+id/tv_back"
@@ -61,7 +61,7 @@
             android:layout_margin="16dp"
             android:background="@null"
             android:gravity="left|top"
-            android:hint="对火星的同伴说些什么"
+            android:hint="@string/publish_hint"
             android:inputType="textMultiLine"
             android:maxLength="280"
             android:minLines="6"
