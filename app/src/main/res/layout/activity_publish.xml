@@ -1,71 +1,80 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@mipmap/ic_sky_06_bg"
-    tools:context="cn.edu.zju.planetweather.activity.PublishActivity">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="title"
+            type="cn.edu.zju.planetweather.pojo.Title" />
+    </data>
 
     <RelativeLayout
-        android:id="@+id/rv_title_bar"
         android:layout_width="match_parent"
-        android:layout_height="52dp"
-        android:layout_marginTop="0dp">
+        android:layout_height="match_parent"
+        android:background="@mipmap/ic_sky_06_bg"
+        tools:context="cn.edu.zju.planetweather.activity.PublishActivity">
 
-        <TextView
-            android:id="@+id/textView2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:background="@null"
-            android:text="@string/publish_title"
-            android:textColor="@android:color/white"
-            android:textSize="18sp" />
-
-        <TextView
-            android:id="@+id/tv_publish"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignTop="@+id/textView2"
-            android:layout_marginRight="8dp"
-            android:background="@null"
-            android:text="@string/publish_button"
-            android:textColor="@android:color/holo_blue_light"
-            android:textSize="18sp" />
-
-        <ImageView
-            android:id="@+id/tv_back"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:layout_centerVertical="true"
-            android:padding="12dp"
-            android:src="@mipmap/ic_back_white" />
-    </RelativeLayout>
-
-    <android.support.v7.widget.CardView xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/cardview"
-        android:layout_width="match_parent"
-        android:layout_height="120dp"
-        android:layout_below="@id/rv_title_bar"
-        android:layout_margin="8dp"
-        android:padding="8dp"
-        app:cardBackgroundColor="#bfffffff"
-        app:cardCornerRadius="8dp">
-
-        <EditText
-            android:id="@+id/et_message"
+        <RelativeLayout
+            android:id="@+id/rv_title_bar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="16dp"
-            android:background="@null"
-            android:gravity="left|top"
-            android:hint="@string/publish_hint"
-            android:inputType="textMultiLine"
-            android:maxLength="280"
-            android:minLines="6"
-            android:padding="6dp" />
+            android:layout_height="52dp"
+            android:layout_marginTop="0dp">
 
-    </android.support.v7.widget.CardView>
-</RelativeLayout>
+            <TextView
+                android:id="@+id/textView2"
+                style="@style/textsize"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:background="@null"
+                android:text="@{title.title}"
+                android:textColor="@android:color/white"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/tv_publish"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignTop="@+id/textView2"
+                android:layout_marginRight="8dp"
+                android:background="@null"
+                android:text="@string/publish_button"
+                android:textColor="@android:color/holo_blue_light"
+                android:textSize="18sp" />
+
+            <ImageView
+                android:id="@+id/tv_back"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_centerVertical="true"
+                android:padding="12dp"
+                android:src="@mipmap/ic_back_white" />
+        </RelativeLayout>
+
+        <android.support.v7.widget.CardView xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/cardview"
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:layout_below="@id/rv_title_bar"
+            android:layout_margin="8dp"
+            android:padding="8dp"
+            app:cardBackgroundColor="#bfffffff"
+            app:cardCornerRadius="8dp">
+
+            <EditText
+                android:id="@+id/et_message"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:background="@null"
+                android:gravity="left|top"
+                android:hint="@string/publish_hint"
+                android:inputType="textMultiLine"
+                android:maxLength="280"
+                android:minLines="6"
+                android:padding="6dp" />
+
+        </android.support.v7.widget.CardView>
+    </RelativeLayout>
+</layout>

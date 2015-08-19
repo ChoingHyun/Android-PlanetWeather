@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.res.ColorStateList;
 import android.content.res.Resources;
+import android.databinding.DataBindingUtil;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -18,7 +19,9 @@ import com.avos.avoscloud.SaveCallback;
 
 import cn.edu.zju.planetweather.R;
 import cn.edu.zju.planetweather.activity.base.BaseActivity;
+import cn.edu.zju.planetweather.databinding.ActivityPublishBinding;
 import cn.edu.zju.planetweather.leancloud.Tables;
+import cn.edu.zju.planetweather.pojo.Title;
 import de.greenrobot.event.EventBus;
 
 public class PublishActivity extends BaseActivity implements View.OnClickListener {
@@ -30,7 +33,9 @@ public class PublishActivity extends BaseActivity implements View.OnClickListene
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_publish);
+        ActivityPublishBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_publish);
+        Title title = new Title("发表");
+        binding.setTitle(title);
 //        transparentStatusBar();
         initViews();
         setListeners();
