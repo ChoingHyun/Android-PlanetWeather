@@ -15,4 +15,15 @@
     <string name="text_line">-</string>
     <string name="max_temp">Max Temp:</string>
     <string name="min_temp">Min Temp:</string>
+    <string name="publish_success">发表成功到火星</string>
+    <string name="publish_fail">与火星通讯失败,请检查网络</string>
+    <string name="not_publish_yet">您的消息还未发表</string>
+    <string name="give_up">是否放弃</string>
+    <string name="yes">是</string>
+    <string name="no">否</string>
+    <string name="words_too_less">这么少的言语,怎能表达对火星人民的思念</string>
+    <string name="publish_message">发表匿名消息</string>
+    <string name="mars_introduction">大家好,我是Mars,也就是大家熟知的火星,右上方转动着的星球就是我的真容啦!</string>
+    <string name="goon">继续看</string>
+    <string name="exit">再按一次离开火星人专属的天气预报</string>
 </resources>

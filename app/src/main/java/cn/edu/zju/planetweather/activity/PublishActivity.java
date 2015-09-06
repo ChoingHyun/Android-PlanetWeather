@@ -34,7 +34,7 @@ public class PublishActivity extends BaseActivity implements View.OnClickListene
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         ActivityPublishBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_publish);
-        Title title = new Title("发表匿名消息");
+        Title title = new Title(getString(R.string.publish_message));
         binding.setTitle(title);
 //        transparentStatusBar();
         initViews();
@@ -65,23 +65,23 @@ public class PublishActivity extends BaseActivity implements View.OnClickListene
                     mPublishTextView.setTextColor(Color.GRAY);
                     publish(content);
                 } else {
-                    showShortToast("这么少的言语,怎能表达对火星人民的思念");
+                    showShortToast(getString(R.string.words_too_less));
                 }
                 break;
             case R.id.tv_back:
                 if (TextUtils.isEmpty(content)) {
                     finish();
                 } else {
-                    new AlertDialog.Builder(this).setTitle("您的星球宣言还未发表")
-                            .setMessage("是否放弃")
-                            .setPositiveButton("是", new DialogInterface.OnClickListener() {
+                    new AlertDialog.Builder(this).setTitle(R.string.not_publish_yet)
+                            .setMessage(R.string.give_up)
+                            .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
 
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
                                     finish();
                                 }
                             })
-                            .setNegativeButton("否", new DialogInterface.OnClickListener() {
+                            .setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
 
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
@@ -103,11 +103,11 @@ public class PublishActivity extends BaseActivity implements View.OnClickListene
             @Override
             public void done(AVException e) {
                 if (e == null) {
-                    showShortToast("发表成功到火星");
+                    showShortToast(getString(R.string.publish_success));
                     finish();
                     EventBus.getDefault().post(new String(""));
                 } else {
-                    showShortToast("与火星通讯失败,请检查网络");
+                    showShortToast(getString(R.string.publish_fail));
                     Resources resource = getBaseContext().getResources();
                     ColorStateList csl = resource.getColorStateList(android.R.color.holo_blue_light);
                     mPublishTextView.setTextColor(csl);

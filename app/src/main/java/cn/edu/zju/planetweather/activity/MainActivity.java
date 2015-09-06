@@ -76,8 +76,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     }
 
     private void showFirstSnackbar() {
-        Snackbar snackbar = Snackbar.make(mCoordinator, "大家好,我是Mars,也就是大家熟知的火星,右上方转动着的星球就是我的真容啦!", Snackbar.LENGTH_INDEFINITE);
-        snackbar.setAction("继续看", new View.OnClickListener() {
+        Snackbar snackbar = Snackbar.make(mCoordinator, getString(R.string.mars_introduction), Snackbar.LENGTH_INDEFINITE);
+        snackbar.setAction(R.string.goon, new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 showSecondSnackbar();
@@ -222,7 +222,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
             if (isExit == false) {
                 isExit = true;
-                Toast.makeText(this, "再按一次离开火星人专属的天气预报", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, R.string.exit, Toast.LENGTH_SHORT).show();
                 mHandler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
