@@ -34,7 +34,7 @@ public class PublishActivity extends BaseActivity implements View.OnClickListene
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         ActivityPublishBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_publish);
-        Title title = new Title("发表");
+        Title title = new Title("发表匿名消息");
         binding.setTitle(title);
 //        transparentStatusBar();
         initViews();

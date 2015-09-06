@@ -9,8 +9,8 @@
     <string name="title_activity_publish">PublishActivity</string>
     <string name="publish_hint">对火星说些什么</string>
     <string name="publish_title">Say to Mars</string>
-    <string name="publish_button">publish</string>
-    <string name="messege_list_title">Anonymous Messages</string>
+    <string name="publish_button">发表</string>
+    <string name="messege_list_title">匿名消息</string>
     <string name="back">back</string>
     <string name="text_line">-</string>
     <string name="max_temp">Max Temp:</string>
